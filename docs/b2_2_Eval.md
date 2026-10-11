@@ -321,7 +321,7 @@ Git은 단순한 버전 관리 도구가 아니라, 팀 협업의 핵심 인프�
 
 ## 4. 평가자료
 
-- **프로젝트 URL**: https://github.com/Beda28/B2-2.Team
+- **프로젝트 URL**: https://github.com/codi-modi/codyssey2026-B2-2
 - **Branch명**: `main`
 
 ---

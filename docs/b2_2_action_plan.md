@@ -3,7 +3,7 @@
 > **목적**: [docs/b2_2_mission.md](file:///Users/mpeg46551/codyssey2026-B2-2/docs/b2_2_mission.md)의 모든 요구사항(필수 10종, 보너스 2종, 평가문항)을 빈틈없이 수행하기 위한 실무 런북(Runbook).  
 > **팀원 4인**: **이진걸(팀 리드)**, **송근영**, **김동조**, **민병우**  
 > **저장소 구조**:
-> - 최종 원본 저장소 (Upstream): [https://github.com/I-nkamanda/codyssey2026-B2-2](https://github.com/I-nkamanda/codyssey2026-B2-2)
+> - 최종 원본 저장소 (Upstream): [https://github.com/codi-modi/codyssey2026-B2-2](https://github.com/codi-modi/codyssey2026-B2-2)
 > - 포크 작업 저장소 (Origin): [https://github.com/nttkor/codyssey2026-B2-2](https://github.com/nttkor/codyssey2026-B2-2)
 
 ---
@@ -37,7 +37,7 @@ flowchart TD
 ### Step 0: 로컬 브랜치 분리 및 Upstream Issue #1 생성
 
 1. **GitHub 웹(Upstream)에서 Issue #1 생성**
-   - 대상: [I-nkamanda/codyssey2026-B2-2](https://github.com/I-nkamanda/codyssey2026-B2-2)
+   - 대상: [codi-modi/codyssey2026-B2-2](https://github.com/codi-modi/codyssey2026-B2-2)
    - 제목: `[Docs] 프로젝트 기본 설정 및 협업 실행 계획 수립`
    - 본문:
      ```markdown
@@ -71,7 +71,7 @@ flowchart TD
 ### Step 1: PR #1 생성, 리뷰 및 병합 (김동조 담당)
 
 1. **PR #1 생성 (GitHub 웹)**:
-   - Base: `I-nkamanda/codyssey2026-B2-2 (main)` ⬅️ Head: `nttkor/codyssey2026-B2-2 (feature/1-djkim-setup)`
+   - Base: `codi-modi/codyssey2026-B2-2 (main)` ⬅️ Head: `nttkor/codyssey2026-B2-2 (feature/1-djkim-setup)`
    - 제목: `docs: 프로젝트 기본 설정 및 협업 계획 수립 (#1)`
    - 본문:
      ```markdown
@@ -196,9 +196,9 @@ flowchart TD
 2. **리뷰어 자동화 (`.github/CODEOWNERS`)**:
    - 파일별 소유자 지정:
      ```
-     * @I-nkamanda
+     * @codi-modi
      /docs/ @nttkor
-     /src/utils/ @I-nkamanda @nttkor
+     /src/utils/ @codi-modi @nttkor
      ```
 
 ---
@@ -206,7 +206,7 @@ flowchart TD
 ### Step 8: `SUBMISSION.md` 인덱스 문서 작성 & 최종 검증
 
 1. **`SUBMISSION.md` 작성**:
-   - 팀 저장소 URL (`https://github.com/I-nkamanda/codyssey2026-B2-2`)
+   - 팀 저장소 URL (`https://github.com/codi-modi/codyssey2026-B2-2`)
    - 팀원별 기여도 매트릭스 (PR 링크 8개, 리뷰 링크 8개)
    - 협업 문서 3종 링크 (`CONTRIBUTING.md`, `conflict-resolution.md`, `troubleshooting-log.md`)
    - 최종 `git log --oneline --graph --all` 출력문 첨부
