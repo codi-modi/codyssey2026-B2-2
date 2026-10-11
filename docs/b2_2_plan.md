@@ -6,7 +6,7 @@
 
 ## 1. 프로젝트 개요 및 팀 구성
 
-- **저장소**: [nttkor/codyssey2026-B2-2](https://github.com/nttkor/codyssey2026-B2-2)
+- **저장소**: [I-nkamanda/codyssey2026-B2-2](https://github.com/I-nkamanda/codyssey2026-B2-2) (Fork: [nttkor/codyssey2026-B2-2](https://github.com/nttkor/codyssey2026-B2-2))
 - **팀원 (4인)**:
   - **팀원 A (이진걸)**: 팀 리드, 저장소/규칙 세팅, 유틸 함수 Part 1, 트러블슈팅 1 (`amend`)
   - **팀원 B (송근영)**: 협업 가이드 문서화, 유틸 함수 Part 2, 트러블슈팅 2 (`reset --soft`)
