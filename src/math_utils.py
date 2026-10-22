@@ -1,9 +1,16 @@
 """수학 및 기초 통계 유틸리티 모듈 (담당: 송근영)."""
-def calculate_average(numbers: list[float]) -> float: 
-    """숫자 리스트의 산술 평균을 계산하여 반환합니다.""" 
+def calculate_average(numbers: list[float], ndigits: int | None = None) -> float:
+    """숫자 리스트의 산술 평균을 계산하여 반환합니다."""
     if not numbers:
-        return 0.0 
-    return sum(numbers) / len(numbers)
+        # 빈 리스트는 평균을 계산할 수 없으므로, 호출부가 예외 없이 처리할 수 있게 0.0을 반환합니다.
+        return 0.0
+
+    average = sum(numbers) / len(numbers)
+
+    if ndigits is not None:
+        return round(average, ndigits)
+
+    return average
 
 def factorial(n: int) -> int:
     """음이 아닌 정수 n의 팩토리얼(n!)을 계산합니다."""
