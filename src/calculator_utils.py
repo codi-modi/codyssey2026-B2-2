@@ -1,4 +1,4 @@
-"""수학 및 기초 통계 유틸리티 모듈 (담당: 송근영)."""
+"""계산기 및 기초 통계 유틸리티 모듈 (담당: 송근영)."""
 def calculate_average(numbers: list[float], ndigits: int | None = None) -> float:
     """숫자 리스트의 산술 평균을 계산하여 반환합니다."""
     if not numbers:
