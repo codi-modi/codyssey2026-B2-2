@@ -19,4 +19,4 @@ def count_vowels(text: str) -> int:
 
 if __name__ == "__main__":
    print(count_words("git flow git pr flow git"))  # {'git': 3, 'flow': 2, 'pr': 1}
-   print(count_vowels("Codyssey Collaboration"))   # 8
+   print(count_vowels("Codyssey Collaboration"))   # 8# 작업 중인 함수의 초안
