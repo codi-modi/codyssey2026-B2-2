@@ -1,6 +1,6 @@
 """계산기 및 기초 통계 유틸리티 모듈 (담당: 송근영)."""
 def calculate_average(numbers: list[float], ndigits: int | None = None) -> float:
-    """숫자 리스트의 산술 평균을 계산하여 반환합니다."""
+    """숫자 리스트의 산술 평균을 계산하여 반환합니다. 또한 이 줄을 다르게 수정하려고 합니다."""
     if not numbers:
         # 빈 리스트는 평균을 계산할 수 없으므로, 호출부가 예외 없이 처리할 수 있게 0.0을 반환합니다.
         return 0.0
