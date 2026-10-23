@@ -31,6 +31,8 @@
 ```text
 codyssey2026-B2-2/
 ├── README.md
+├── .github/
+│   └── CODEOWNERS
 ├── src/
 │   ├── string_utils.py
 │   ├── math_utils.py
@@ -46,7 +48,6 @@ codyssey2026-B2-2/
     ├── b2_2_mission.md
     ├── b2_2_Eval.md
     ├── .github/
-    │   ├── CODEOWNERS
     │   └── pull_request.template.md
     ├── raw_logs/
     └── screenshots/
@@ -188,7 +189,7 @@ print(count_vowels("Codyssey Collaboration"))
 - [실행 계획서](docs/b2_2_action_plan.md)
 - [미션 문서](docs/b2_2_mission.md)
 - [평가 문서](docs/b2_2_Eval.md)
-- [CODEOWNERS](docs/.github/CODEOWNERS)
+- [CODEOWNERS](.github/CODEOWNERS)
 - [Pull Request 템플릿](docs/.github/pull_request.template.md)
 - [충돌 원본 로그](docs/raw_logs/conflict-resolution_raw.md)
 - [트러블슈팅 원본 로그](docs/raw_logs/troubleshooting_raw.md)
@@ -257,7 +258,7 @@ PR에는 아래 항목을 포함합니다.
 
 ## 리뷰 책임
 
-리뷰 책임은 [docs/.github/CODEOWNERS](docs/.github/CODEOWNERS)에 정의되어 있습니다.
+리뷰 책임은 [.github/CODEOWNERS](.github/CODEOWNERS)에 정의되어 있습니다.
 
 예:
 
