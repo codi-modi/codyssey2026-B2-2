@@ -120,6 +120,17 @@ python3 -m doctest -v src/string_utils.py
 
 `amend`·`reset` 실습의 로컬 이력과 stash 기록은 `main` 그래프만으로 확인할 수 없으므로 문서의 reflog·원본 로그·스크린샷을 함께 증빙으로 사용합니다.
 
+### 6.1 보너스: 개인 브랜치 커밋 정리
+
+이진걸은 `feature/jglee-rebase-practice`에서 `git rebase -i HEAD~2`를 실행하고 두 번째 커밋을 `squash`로 지정했습니다. 기준 커밋 `1a414fe` 이후의 커밋 2개(`6ebf3dc`, `67f0552`)를 `6c8a668` 한 개로 합치고, 메시지를 `docs: document interactive rebase practice`로 정리했습니다. 전후 파일 내용이 같고 커밋 수가 2개에서 1개로 줄었음을 로컬 Git 객체로 확인했습니다.
+
+- [상세 절차·전후 비교·스크린샷 6장](docs/troubleshooting-log.md#보너스-git-rebase--i로-개인-브랜치-히스토리-정리)
+- [원본 터미널 로그](docs/raw_logs/rebase_raw.md)
+- [정리 전](docs/screenshots/rebase_before.png) / [squash 지정](docs/screenshots/rebase_during2.png) / [정리 후](docs/screenshots/rebase_after.png)
+- [실습 결과 문서](docs/practice/rebase-practice.md)
+
+이 실습은 7절의 기존 `main` 히스토리 캡처 이후 개인 브랜치에서 수행했습니다. 로컬 실습 완료로 기록하며, 팀원별 병합 PR 수에는 추가하지 않습니다.
+
 ## 7. Git 히스토리 증빙
 
 아래는 기존 제출 초안에 수록된 `git log --oneline --graph --all` 결과입니다. 기준 HEAD는 `a8afe68`이며 로컬·원격 추적 브랜치가 함께 표시됩니다. 브랜치 장식은 캡처 당시 상태입니다.
@@ -241,7 +252,7 @@ git log --oneline --first-parent main
 | `main` 보호·PR 병합 강제·승인 1명 | 설정 증빙 필요 | 협업 규칙과 PR 병합 이력만으로 Branch Protection 활성화를 확정할 수 없음. 저장소 설정 또는 Ruleset 증빙 필요. 직접 커밋 [`a12aeb7`](https://github.com/codi-modi/codyssey2026-B2-2/commit/a12aeb7)의 경위도 충돌 실습 기록과 함께 확인 필요 |
 | 보너스: CODEOWNERS 자동화 | 설정 파일 반영 | [.github/CODEOWNERS](.github/CODEOWNERS)로 이동하고 송근영 계정을 `@x0cloud69`로 수정. 모듈별 담당자와 `/docs/`·`/.github/` 공동 담당자를 지정. `main` 병합 후 각 계정의 write 권한 및 후속 일반 PR의 자동 리뷰 요청 확인 필요 |
 | PR 템플릿 자동 적용 | 적용 확인 필요 | 현재 `docs/.github/pull_request.template.md`에 보관됨. 루트 `.github/PULL_REQUEST_TEMPLATE.md` 등 GitHub 지원 경로·이름으로 정리 필요 |
-| 보너스: `git rebase -i` | 증빙 미확인 | 기존 제출 자료에서 squash/reword 전후 히스토리 비교를 확인하지 못했으므로 완료로 기재하지 않음 |
+| 보너스: `git rebase -i` | 로컬 실습·증빙 확인 | 이진걸의 `feature/jglee-rebase-practice`에서 `6ebf3dc`·`67f0552`를 `6c8a668`로 squash. [상세 기록](docs/troubleshooting-log.md#보너스-git-rebase--i로-개인-브랜치-히스토리-정리), [원본 로그](docs/raw_logs/rebase_raw.md), [정리 전](docs/screenshots/rebase_before.png)·[정리 후](docs/screenshots/rebase_after.png). 원격 PR 병합은 별도 |
 
 자동화 경로 판단 근거: GitHub 공식 [CODEOWNERS 위치 안내](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location), [PR 템플릿 생성 안내](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository).
 
