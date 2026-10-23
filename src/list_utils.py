@@ -24,4 +24,3 @@ def chunk_list(items: list[Any], size: int) -> list[list[Any]]:
 if __name__ == "__main__":
     print(deduplicate_preserve_order([3, 1, 2, 3, 2, 4]))  # [3, 1, 2, 4]
     print(chunk_list([1, 2, 3, 4, 5], 2))                  # [[1, 2], [3, 4], [5]]
-# 잘못 추가된 임시 설정
