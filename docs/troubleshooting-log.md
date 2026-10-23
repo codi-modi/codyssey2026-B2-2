@@ -5,7 +5,7 @@
 | # | 시나리오 | 참여자 (역할) | 실습 브랜치 | 증빙 |
 |---|----------|---------------|-------------|------|
 | 1 | `git commit --amend` — 직전 커밋 메시지 수정 | 이진걸 (실습 수행) | `feature/jglee-amend-practice` | `screenshots/scenario_a_1.png`, `scenario_a_2.png` |
-| 2 | `git reset --soft HEAD~1` — 로컬 커밋 취소 + 변경 유지 | 송근영 (실습 수행) | `feature/kysong-reset-practice` | `screenshots/scenario_b.png`, `kysong_reset.md` (reflog 기록) |
+| 2 | `git reset --soft HEAD~1` — 로컬 커밋 취소 + 변경 유지 | 송근영 (실습 수행) | `feature/kysong-reset-practice` | `screenshots/scenario_b.png`, [원본 로그](raw_logs/troubleshooting_raw.md) (reflog 기록) |
 | 3 | `git revert` — push된 커밋 안전하게 취소 | 김동조 (실습 수행) | `feature/djkim-revert-practice` | `screenshots/scenario_c_1.png`, `scenario_c_2.png` |
 | 4 | `git stash` / `git stash pop` — 작업 임시 보관 후 브랜치 전환 | 민병우 (실습 수행) | `feature/bwmin-stash-practice` | `screenshots/scenario_d_1.png`, `scenario_d_2.png` |
 
@@ -110,7 +110,7 @@ Changes to be committed:
         modified:   src/math_utils.py
 ```
 
-reflog 확인 결과(송근영 기록, [kysong_reset.md](kysong_reset.md)):
+reflog 확인 결과(송근영 기록, [취합 원본 로그](raw_logs/troubleshooting_raw.md)):
 ```text
 0a1bf3c feature/kysong-reset-practice@{2026-10-22 15:56:27 +0900}: commit: Update math utils average handling
 64a24bd feature/kysong-reset-practice@{2026-10-22 14:08:55 +0900}: reset: moving to HEAD~1
@@ -322,3 +322,102 @@ Dropped refs/stash@{0} (c168328f6b9b2da90dffbd7b94d2987efab737b6)
 - 명령어 입력 실수(`git log -l`)나 공백/개행 문제(`echo >>`)는 실습 결과를 흐리게 하므로, 명령 실행 후 `git status` / `git log`로 항상 결과를 확인한다.
 - 커밋을 취소하거나 히스토리를 고쳐 쓴 뒤에는 `git reflog`로 HEAD 이동 이력을 확인해 두면, 무엇을 언제 되돌렸는지 증빙이 되고 실수 시 복구 경로도 된다.
 - 공용 실습 PC에서는 커밋 전에 `git config user.name` / `user.email`이 올바르게 설정되어 있는지 먼저 확인한다.
+
+
+---
+
+## 보너스: git rebase -i로 개인 브랜치 히스토리 정리
+
+### 참여자 및 상황
+
+- 수행자: 이진걸 (`I-nkamanda`)
+- 수행일: 2026-10-23 (KST)
+- 개인 브랜치: `feature/jglee-rebase-practice`
+- 기준 커밋: `1a414fe` (`feature/jglee-submission-doc`에서 분기)
+- 대상 파일: [rebase-practice.md](practice/rebase-practice.md)
+- 목적: 같은 문서에 대한 연속 커밋 2개를 squash하여 작업 의도가 드러나는 커밋 1개로 정리한다.
+- 원본 증빙: [rebase_raw.md](raw_logs/rebase_raw.md). 아래 출력은 원본에서 프롬프트와 브랜치 장식을 생략한 발췌이다.
+
+### 정리 전
+
+문서 제목을 추가한 뒤 설명 한 줄을 추가하여 각각 커밋했다.
+
+```text
+67f0552 docs: explain rebase practice purpose
+6ebf3dc docs: add interactive rebase practice note
+1a414fe chore: configure CODEOWNERS and update submission evidence
+```
+
+![rebase 정리 전: 문서 내용과 커밋 두 개 확인](screenshots/rebase_before.png)
+
+### 실행 절차
+
+1. `git log -3 --oneline`으로 대상 커밋 2개와 기준 커밋을 확인했다.
+2. `git rebase -i HEAD~2`를 실행했다. todo 목록은 로그와 달리 오래된 커밋부터 표시된다.
+3. 첫 번째 커밋은 `pick`으로 유지하고 두 번째 커밋을 `squash`로 변경했다.
+
+```text
+pick 6ebf3dc # docs: add interactive rebase practice note
+squash 67f0552 # docs: explain rebase practice purpose
+```
+
+![rebase todo 최초 화면: 두 커밋 모두 pick](screenshots/rebase_during.png)
+
+![rebase todo 수정 화면: 두 번째 커밋을 squash로 지정](screenshots/rebase_during2.png)
+
+4. Vim에서 `Esc` → `:wq` → Enter로 저장했다. 이어서 열린 메시지 편집기에서 기존 메시지를 정리하고 다음 최종 메시지를 저장했다. 별도 `reword` 명령은 사용하지 않았으며 squash 과정에서 메시지를 수정했다.
+
+```text
+docs: document interactive rebase practice
+```
+
+![squash 메시지 편집 중: 기존 메시지 정리 과정](screenshots/rebase_duringcommit1.png)
+
+![squash 메시지 정리 후: 최종 메시지 한 개](screenshots/rebase_duringcommit2.png)
+
+### 정리 후 및 결과
+
+```text
+[detached HEAD 6c8a668] docs: document interactive rebase practice
+ 1 file changed, 2 insertions(+)
+ create mode 100644 docs/practice/rebase-practice.md
+Successfully rebased and updated refs/heads/feature/jglee-rebase-practice.
+```
+
+`git log -3 --oneline` 결과:
+
+```text
+6c8a668 docs: document interactive rebase practice
+1a414fe chore: configure CODEOWNERS and update submission evidence
+a8afe68 Merge pull request #25 from codi-modi/feature/kysong-readme-guide
+```
+
+![rebase 완료: 성공 메시지, 정리 후 로그 및 git status](screenshots/rebase_after.png)
+
+| 비교 항목 | 정리 전 | 정리 후 |
+| --- | --- | --- |
+| 기준 커밋 이후 커밋 수 | 2개 | 1개 |
+| 커밋 해시 | `6ebf3dc`, `67f0552` | `6c8a668` |
+| 메시지 | 제목 추가 / 목적 설명으로 분리 | `docs: document interactive rebase practice` |
+| 파일 내용 | 제목과 설명, 총 2줄 | 같은 2줄 유지 |
+| 기준 커밋 | `1a414fe` | `1a414fe` 유지 |
+
+증빙 정리 시 로컬 커밋 객체를 대조한 결과:
+
+```bash
+git rev-list --count 1a414fe..67f0552
+# 2
+git rev-list --count 1a414fe..6c8a668
+# 1
+git diff --exit-code 67f0552 6c8a668 -- docs/practice/rebase-practice.md
+# 출력 없음, 종료 코드 0: 파일 내용 동일
+```
+
+현재 reflog에서도 `rebase (start)`, `rebase (squash)`, `rebase (finish)`를 확인했다. 정리 후 `git status`의 untracked 항목은 캡처 이미지이며, rebase 실패나 미해결 충돌을 뜻하지 않는다. 원본 텍스트에 생략된 todo·메시지 편집 과정은 위 스크린샷으로 보완한다.
+
+### 왜 이 방법을 선택했는가 및 주의할 점
+
+- 같은 목적의 연속 커밋을 하나로 합쳐 리뷰어가 문서 변경의 의도를 한 번에 파악하도록 했다.
+- squash는 파일 내용을 보존하면서 새로운 커밋을 생성하므로 커밋 해시가 바뀐다. 변경 전 커밋은 현재 브랜치 이력에서 빠지지만 당분간 reflog·로컬 객체로 확인할 수 있다.
+- 원격에 push하기 전 개인 브랜치에서 수행했으며, 원본 로그에는 push나 강제 push가 없다. 공유 `main` 이력을 재작성하지 않았다.
+- 이 증빙은 로컬 실습 완료 기록이다. 해당 브랜치의 원격 push·PR 병합 완료를 뜻하지 않는다.
