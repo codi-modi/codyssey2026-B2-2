@@ -1,0 +1,16 @@
+# GitHub가 PR의 대상 브랜치에 있는 이 파일을 사용해 리뷰어를 자동 요청합니다.
+# 각 계정은 저장소에 명시적인 write 권한이 있어야 합니다.
+# 마지막으로 일치하는 규칙이 적용되므로 공통 규칙을 먼저 둡니다.
+
+# 기본 리뷰 책임
+* @I-nkamanda
+
+# 모듈별 리뷰 책임
+/src/string_utils.py @I-nkamanda
+/src/math_utils.py @x0cloud69
+/src/list_utils.py @nttkor
+/src/count_utils.py @byungwoo2026
+
+# 협업 문서 및 자동화 설정의 공동 리뷰 책임
+/docs/ @I-nkamanda @x0cloud69 @nttkor @byungwoo2026
+/.github/ @I-nkamanda @x0cloud69 @nttkor @byungwoo2026
